@@ -28,5 +28,9 @@ public abstract class MyAbstractList<E> extends MyAbstractCollection<E> implemen
         return -1;
     }
 
+    public void trimToSize(){
+        // default: nothing
+    }
+
     // imp methods
 }
