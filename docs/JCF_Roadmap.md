@@ -49,6 +49,9 @@ Goal: Implement tree-based structures.
 - `MyTreeMap<K,V>` (Red-Black Tree)
 - `MyTreeSet<E>` (backed by `MyTreeMap`)
 - `MyComparator<T>` interface
+- Introduce an inner SubList class (backed by parent list). 
+- Implement fail-fast behavior (modCount check). 
+- Upgrade MyArrayList.subList() to return that view.
 
 ---
 

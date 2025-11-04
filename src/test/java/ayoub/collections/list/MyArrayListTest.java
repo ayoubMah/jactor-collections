@@ -1,5 +1,6 @@
 package ayoub.collections.list;
 
+import ayoub.collections.MyList;
 import ayoub.list.MyArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -91,5 +92,76 @@ public class MyArrayListTest {
         assertThrows(IndexOutOfBoundsException.class, () -> list.get(10));
         assertThrows(IndexOutOfBoundsException.class, () -> list.set(-1, "oops"));
         assertThrows(IndexOutOfBoundsException.class, () -> list.remove(99));
+    }
+
+    @Test
+    void testTrimToSize() {
+        // given a list that has extra capacity
+        MyArrayList<Integer> list = new MyArrayList<>(20);
+        for (int i = 0; i < 10; i++) {
+            list.add(i);
+        }
+
+        int oldCapacity = getCapacity(list); // helper to introspect internal length
+        assertTrue(oldCapacity >= 20, "Initial capacity should be 20 or more");
+
+        // when
+        list.trimToSize();
+
+        // then
+        int newCapacity = getCapacity(list);
+        assertEquals(list.size(), newCapacity, "Array should shrink to match size");
+        assertTrue(newCapacity < oldCapacity, "Capacity should be reduced");
+    }
+
+    /**
+     * Helper to get internal capacity of MyArrayList via reflection.
+     */
+    private int getCapacity(MyArrayList<?> list) {
+        try {
+            java.lang.reflect.Field arrField = MyArrayList.class.getDeclaredField("arr");
+            arrField.setAccessible(true);
+            Object[] arr = (Object[]) arrField.get(list);
+            return arr.length;
+        } catch (Exception e) {
+            fail("Reflection failed: " + e.getMessage());
+            return -1;
+        }
+    }
+
+    @Test
+    void testSubListCopyBehavior() {
+        MyArrayList<String> list = new MyArrayList<>();
+        list.add("A");
+        list.add("B");
+        list.add("C");
+        list.add("D");
+        list.add("E");
+
+        // when
+        MyList<String> sub = list.subList(1, 4); // expected ["B", "C", "D"]
+
+        // then
+        assertEquals(3, sub.size());
+        assertEquals("B", sub.get(0));
+        assertEquals("D", sub.get(2));
+
+        // modify sublist
+        sub.set(1, "X");
+        // verify it's a copy, not a view (parent unaffected)
+        assertEquals("C", list.get(2));
+        assertEquals("X", sub.get(1));
+    }
+
+    @Test
+    void testSubListOutOfBounds() {
+        MyArrayList<String> list = new MyArrayList<>();
+        list.add("A");
+        list.add("B");
+        list.add("C");
+
+        assertThrows(IndexOutOfBoundsException.class, () -> list.subList(-1, 2));
+        assertThrows(IndexOutOfBoundsException.class, () -> list.subList(0, 5));
+        assertThrows(IllegalArgumentException.class, () -> list.subList(2, 1)); // from > to
     }
 }

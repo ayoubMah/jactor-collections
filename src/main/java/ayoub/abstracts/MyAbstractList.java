@@ -1,6 +1,7 @@
 package ayoub.abstracts;
 
 import ayoub.collections.MyList;
+import ayoub.list.MyArrayList;
 
 public abstract class MyAbstractList<E> extends MyAbstractCollection<E> implements MyList<E> {
 
@@ -32,5 +33,16 @@ public abstract class MyAbstractList<E> extends MyAbstractCollection<E> implemen
         // default: nothing
     }
 
-    // imp methods
+    @Override
+    public MyList<E> subList(int fromIndex, int toIndex){
+        if (fromIndex < 0 || toIndex > size())
+            throw new IndexOutOfBoundsException();
+        if (fromIndex > toIndex)
+            throw new IllegalArgumentException();
+        MyList<E> sub = new MyArrayList<>();
+        for (int i = fromIndex; i < toIndex; i++){
+            sub.add(get(i));
+        }
+        return sub;
+    }
 }
