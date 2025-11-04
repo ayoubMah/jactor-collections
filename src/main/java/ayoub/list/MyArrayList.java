@@ -3,7 +3,6 @@ package ayoub.list;
 
 import ayoub.abstracts.MyAbstractList;
 
-import java.util.Arrays;
 import java.util.Iterator;
 
 public class MyArrayList<E> extends MyAbstractList<E> {
@@ -138,5 +137,16 @@ public class MyArrayList<E> extends MyAbstractList<E> {
                 MyArrayList.this.remove(--cursor);
             }
         };
+    }
+
+    @Override
+    public void trimToSize(){
+        if(arr.length != size){
+            E [] newArr = (E[]) new Object [size];
+            for(int i = 0; i < size ; i++){
+                newArr[i] = arr[i];
+            }
+            arr = newArr;
+        }
     }
 }

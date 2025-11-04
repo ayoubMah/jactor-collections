@@ -8,4 +8,5 @@ public interface MyList<E> extends MyCollection<E> {
     E remove(int index);
     int indexOf(Object o);
     int lastIndexOf(Object o);
+    MyList<E> subList(int fromIndex, int toIndex);
 }
