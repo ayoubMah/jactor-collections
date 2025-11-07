@@ -1,6 +1,6 @@
-# 🚀 MyCollection Framework - Roadmap
+# == MyCollection Framework - Roadmap ==
 
-## 🧩 Phase 1 — Core Lists (v0.0.x)
+##  Phase 1 — Core Lists (v0.0.x)
 Goal: Build the foundation and list implementations.
 
 | Component | Status | Notes |
@@ -10,20 +10,26 @@ Goal: Build the foundation and list implementations.
 | `AbstractMyCollection<E>` | ✅ Done | Shared logic |
 | `AbstractMyList<E>` | ✅ Done | Abstract list features |
 | `MyArrayList<E>` | ✅ Done | Dynamic array |
-| `MyArrayListTest` | 🧪 Pending | Add JUnit tests |
+| `MyArrayListTest` | ✅ Done | Add JUnit tests |
 | `MyLinkedList<E>` | 🚧 In Progress | Node-based list |
 | `MyLinkedListTest` | 🧪 Planned |  |
 
-### 🎯 v0.0.2 Milestone Goals
+### ✅ v0.0.2 Milestone Goals
 - Write complete JUnit 5 tests for `MyArrayList`
 - Fix small internal issues (iterator fail-fast, lastIndexOf)
 - Add `trimToSize()` and `subList()` methods
 - Begin `MyLinkedList` implementation (basic CRUD)
 - Write README usage examples
 
+### ✅ v0.0.3 In Progress
+- Added MyLinkedList<E> (doubly linked)
+- Added LinkedListIterator
+- Added full unit tests (CRUD + iterator)
+
+
 ---
 
-## 🧱 Phase 2 — Sets & Queues (v0.1.x)
+##  Phase 2 — Sets & Queues (v0.1.x)
 Goal: Introduce `MySet`, `MyQueue`, and linked implementations.
 
 - `MySet<E>` + `MyAbstractSet<E>`
@@ -33,7 +39,7 @@ Goal: Introduce `MySet`, `MyQueue`, and linked implementations.
 
 ---
 
-## 🔑 Phase 3 — Maps (v0.2.x)
+##  Phase 3 — Maps (v0.2.x)
 Goal: Key–Value storage system.
 
 - `MyMap<K,V>` + `MyAbstractMap<K,V>`
@@ -43,7 +49,7 @@ Goal: Key–Value storage system.
 
 ---
 
-## 🌳 Phase 4 — Sorted Collections (v0.3.x)
+##  Phase 4 — Sorted Collections (v0.3.x)
 Goal: Implement tree-based structures.
 
 - `MyTreeMap<K,V>` (Red-Black Tree)
@@ -55,7 +61,7 @@ Goal: Implement tree-based structures.
 
 ---
 
-## ⚙️ Phase 5 — Utilities & Finalization (v0.5.x → v1.0.0)
+##  Phase 5 — Utilities & Finalization (v0.5.x → v1.0.0)
 Goal: Utilities, documentation, and publication.
 
 - `MyObjects` and `MyCollections` helpers
@@ -65,7 +71,7 @@ Goal: Utilities, documentation, and publication.
 
 ---
 
-## 🧠 Long-term Ideas
+##  Long-term Ideas
 - Streams & Lambdas support
 - Concurrency-safe collections (`MyVector`, `MyHashtable`)
 - Benchmark suite vs Java’s JCF

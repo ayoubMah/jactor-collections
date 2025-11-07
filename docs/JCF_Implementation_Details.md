@@ -1,4 +1,4 @@
-# 🧩 Implementation Details
+#  Implementation Details
 
 ## `MyArrayList<E>`
 Dynamic array-based list implementation.

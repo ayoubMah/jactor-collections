@@ -5,7 +5,7 @@ import ayoub.list.MyArrayList;
 
 public abstract class MyAbstractList<E> extends MyAbstractCollection<E> implements MyList<E> {
 
-    // Abstract Methods ===============================================================================================================
+    // Abstract Methods ===========================================================================================================
     public abstract E get(int index); // it's abst cuz it needs storage info
     public abstract E set(int index, E elm); // why E? cuz it's return the previous elm that was in the same position
     public abstract void add(int index, E elm);

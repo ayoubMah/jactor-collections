@@ -2,7 +2,7 @@
 
 A complete implementation of Java's Collection Framework from scratch - built for deep learning and understanding of data structures, algorithms, and design patterns.
 
-## 🎯 Project Goals
+##  Project Goals
 
 - Master core data structures (arrays, linked lists, hash tables, trees, heaps)
 - Understand Java generics deeply
@@ -10,7 +10,7 @@ A complete implementation of Java's Collection Framework from scratch - built fo
 - Practice Test-Driven Development (TDD)
 - Build production-quality, publishable code
 
-## 📦 Project Structure
+##  Project Structure
 
 ```
 mycollections/
@@ -25,7 +25,7 @@ mycollections/
 └── src/test/java/ayoub/Collections/
 ```
 
-## ✅ Implementation Checklist
+##  Implementation Checklist
 
 ### Phase 1: Foundation & List Implementations
 
@@ -54,24 +54,24 @@ mycollections/
     - [x] Inner class: `ArrayListIterator` implementing `Iterator<E>`
     - [x] `iterator()` method
     - [ ] Fail-fast iterator (ConcurrentModificationException)
-- [ ] `MyArrayListTest` - comprehensive unit tests
+- [x] `MyArrayListTest` - comprehensive unit tests
 
 #### LinkedList Implementation
-- [ ] `MyLinkedList<E>` class
-    - [ ] Node inner class (with `data`, `next`, `prev`)
-    - [ ] Head and tail references
+- [x] `MyLinkedList<E>` class
+    - [x] Node inner class (with `data`, `next`, `prev`)
+    - [x] Head and tail references
     - [ ] `add(E element)` - add to end
-    - [ ] `add(int index, E element)`
+    - [x] `add(int index, E element)`
     - [ ] `addFirst(E element)`, `addLast(E element)`
-    - [ ] `get(int index)`
-    - [ ] `set(int index, E element)`
-    - [ ] `remove(int index)`
+    - [x] `get(int index)`
+    - [x] `set(int index, E element)`
+    - [x] `remove(int index)`
     - [ ] `removeFirst()`, `removeLast()`
     - [ ] `size()`, `isEmpty()`, `clear()`
     - [ ] Inner class: `LinkedListIterator`
-    - [ ] `iterator()` method
+    - [x] `iterator()` method
     - [ ] Fail-fast iterator
-- [ ] `MyLinkedListTest` - comprehensive unit tests
+- [x] `MyLinkedListTest` - comprehensive unit tests
 
 #### Stack Implementation
 - [ ] `MyStack<E>` class
@@ -276,7 +276,7 @@ mycollections/
 
 ---
 
-## 🧪 Testing Strategy
+##  Testing Strategy
 
 - **Unit tests for every class** using JUnit 5
 - **Test coverage**: Aim for 80%+ code coverage
@@ -289,7 +289,7 @@ mycollections/
 
 ---
 
-## 📚 Learning Resources
+##  Learning Resources
 
 ### When You Get Stuck
 
@@ -316,7 +316,7 @@ mycollections/
 
 ---
 
-## 🏆 Success Criteria
+##  Success Criteria
 
 - [ ] All interfaces and classes implemented
 - [ ] All tests passing
@@ -329,7 +329,7 @@ mycollections/
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ```bash
 # Clone the repository
@@ -347,7 +347,7 @@ mvn jacoco:report
 
 ---
 
-## 📝 Notes
+##  Notes
 
 - **Start simple**: ArrayList → LinkedList → HashMap → HashSet → TreeMap → TreeSet
 - **Test-driven development**: Write tests first, then implement
@@ -358,12 +358,12 @@ mvn jacoco:report
 
 ---
 
-## 📄 License
+##  License
 
 MIT License - feel free to use and learn from this project
 
 ---
-## ✍️ Author
+##  Author
 
 **Ayoub El-mahjouby**
 [GitHub Profile](https://github.com/ayoubMah)

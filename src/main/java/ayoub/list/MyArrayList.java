@@ -71,6 +71,7 @@ public class MyArrayList<E> extends MyAbstractList<E> {
 
     @Override
     public void add(int index, E elm) {
+        if (index < 0 || index >= size()) throw new IndexOutOfBoundsException();
         ensureCapacity(size+1); // the minimum capacity accepted to add one elm is size+1
         arr[index] = elm;
         size++;
