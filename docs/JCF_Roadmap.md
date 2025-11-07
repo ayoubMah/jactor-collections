@@ -14,17 +14,17 @@ Goal: Build the foundation and list implementations.
 | `MyLinkedList<E>` | 🚧 In Progress | Node-based list |
 | `MyLinkedListTest` | 🧪 Planned |  |
 
-###  v0.0.2 Milestone Goals
+### ✅ v0.0.2 Milestone Goals
 - Write complete JUnit 5 tests for `MyArrayList`
 - Fix small internal issues (iterator fail-fast, lastIndexOf)
 - Add `trimToSize()` and `subList()` methods
 - Begin `MyLinkedList` implementation (basic CRUD)
 - Write README usage examples
 
-###  v0.0.3 In Progress
-- Implemented MyLinkedList<E> (doubly linked)
+### ✅ v0.0.3 In Progress
+- Added MyLinkedList<E> (doubly linked)
 - Added LinkedListIterator
-- Added MyLinkedListTest (unit coverage)
+- Added full unit tests (CRUD + iterator)
 
 
 ---

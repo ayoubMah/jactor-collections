@@ -85,6 +85,47 @@ public class MyLinkedList<E> extends MyAbstractList<E> {
         return -1; // if we don't found it
     }
 
+    public boolean isEmpty(){
+        return size() == 0;
+    }
+
+    public E first(){
+        if (isEmpty()) return null;
+        return head.getNext().getData();
+    }
+
+    public E last(){
+        if (isEmpty()) return null;
+        return tail.getPrev().getData();
+    }
+
+    public void addBetween(Node<E> prec, E elm, Node<E> successor){
+        Node<E> node = new Node<>(prec, elm, successor);
+        prec.setNext(node);
+        successor.setPrev(node);
+        size ++;
+    }
+
+    public void addFirst(E elm){
+        addBetween(head, elm, head.getNext());
+    }
+
+    public void addLast(E elm){
+        addBetween(tail.getPrev(), elm, tail);
+    }
+
+    public E removeFirst(){
+        if (isEmpty()) return null;
+        remove(head.getNext().getData()); // this remove is public boolean remove(Object o) from my abstract collection
+        return head.getNext().getData();
+    }
+
+    public E removeLast(){
+        if (isEmpty()) return null;
+        remove(tail.getPrev().getData());
+        return tail.getPrev().getData();
+    }
+
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {

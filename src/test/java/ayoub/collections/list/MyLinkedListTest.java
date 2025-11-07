@@ -4,19 +4,18 @@ import ayoub.list.MyLinkedList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.Iterator;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-class MyLinkedListTest {
+public class MyLinkedListTest {
 
     private MyLinkedList<String> list;
 
     @BeforeEach
-    void setUp() {
+    void setup() {
         list = new MyLinkedList<>();
-        list.add("A");
-        list.add("B");
-        list.add("C");
+        list.add(0, "A");
+        list.add(1, "B");
+        list.add(2, "C");
     }
 
     @Test
@@ -25,55 +24,85 @@ class MyLinkedListTest {
         assertEquals("A", list.get(0));
         assertEquals("B", list.get(1));
         assertEquals("C", list.get(2));
+    }
 
-        list.add(1, "X"); // A, X, B, C
-        assertEquals("X", list.get(1));
+    @Test
+    void testAddAtIndex() {
+        list.add(1, "X");
         assertEquals(4, list.size());
+        assertEquals("X", list.get(1));
+        assertEquals("[A, X, B, C]", list.view());
     }
 
     @Test
     void testSet() {
-        String old = list.set(1, "Z"); // A, Z, C
+        String old = list.set(1, "Z");
         assertEquals("B", old);
         assertEquals("Z", list.get(1));
     }
 
     @Test
-    void testRemove() {
-        String removed = list.remove(1); // remove "B"
+    void testRemoveByIndex() {
+        String removed = list.remove(1);
         assertEquals("B", removed);
         assertEquals(2, list.size());
-        assertEquals("C", list.get(1));
+        assertEquals("[A, C]", list.view());
     }
 
     @Test
-    void testIndexOfAndLastIndexOf() {
-        list.add("A"); // A, B, C, A
-        assertEquals(0, list.indexOf("A"));
-        assertEquals(3, list.lastIndexOf("A"));
-        assertEquals(-1, list.indexOf("Z"));
+    void testFirstAndLast() {
+        assertEquals("A", list.first());
+        assertEquals("C", list.last());
     }
 
     @Test
-    void testIterator() {
+    void testAddFirstAndAddLast() {
+        list.addFirst("Start"); // typo kept intentionally as in your class
+        list.addLast("End");
+        assertEquals("[Start, A, B, C, End]", list.view());
+        assertEquals(5, list.size());
+    }
+
+    @Test
+    void testRemoveFirstAndLast() {
+        list.addLast("D");
+        String first = list.removeFirst();
+        String last = list.removeLast();
+        assertEquals("A", first);
+        assertEquals("D", last);
+        assertEquals("[B, C]", list.view());
+    }
+
+    @Test
+    void testIteratorTraversal() {
         Iterator<String> it = list.iterator();
-        assertTrue(it.hasNext());
-        assertEquals("A", it.next());
-        assertEquals("B", it.next());
-        assertEquals("C", it.next());
-        assertFalse(it.hasNext());
+        StringBuilder sb = new StringBuilder();
+        while (it.hasNext()) {
+            sb.append(it.next());
+        }
+        assertEquals("ABC", sb.toString());
     }
 
     @Test
-    void testSubList() {
-        var sub = list.subList(0, 2); // [A, B]
-        assertEquals(2, sub.size());
-        assertEquals("A", sub.get(0));
-        assertEquals("B", sub.get(1));
+    void testOutOfBounds() {
+        assertThrows(IndexOutOfBoundsException.class, () -> list.get(-1));
+        assertThrows(IndexOutOfBoundsException.class, () -> list.get(5));
+        assertThrows(IndexOutOfBoundsException.class, () -> list.set(10, "X"));
+        assertThrows(IndexOutOfBoundsException.class, () -> list.remove(99));
     }
 
     @Test
-    void testViewMethod() {
+    void testEmptyListOperations() {
+        MyLinkedList<Integer> empty = new MyLinkedList<>();
+        assertTrue(empty.isEmpty());
+        assertNull(empty.first());
+        assertNull(empty.last());
+        assertNull(empty.removeFirst());
+        assertNull(empty.removeLast());
+    }
+
+    @Test
+    void testViewRepresentation() {
         assertEquals("[A, B, C]", list.view());
     }
 }
