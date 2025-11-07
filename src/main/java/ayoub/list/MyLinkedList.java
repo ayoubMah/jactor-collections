@@ -21,9 +21,10 @@ public class MyLinkedList<E> extends MyAbstractList<E> {
     // helper
     private Node<E> nodeAt(int index) {
         // TODO: for now no need to make optimization zie/2  we start always from head
-        if (index < 0 || index >= size) throw new IndexOutOfBoundsException();
+        if (index < 0 || index > size) throw new IndexOutOfBoundsException();
+
         Node<E> current = head.getNext(); // At position 0
-        for (int i = 0; i < index -1 ; i++) {
+        for (int i = 0; i < index ; i++) {
             current = current.getNext();
         }
         return current;
@@ -86,7 +87,27 @@ public class MyLinkedList<E> extends MyAbstractList<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return new Iterator<E>() {
+
+            Node<E> current = head.getNext();
+            @Override
+            public boolean hasNext() {
+                return current != tail;
+            }
+
+            @Override
+            public E next() {
+                E data = current.getData();
+                current = current.getNext();
+                return data;
+            }
+
+            // todo
+            @Override
+            public void remove(){
+                throw new UnsupportedOperationException("remove not yet supported");
+            }
+        };
     }
 
     @Override

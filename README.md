@@ -54,24 +54,24 @@ mycollections/
     - [x] Inner class: `ArrayListIterator` implementing `Iterator<E>`
     - [x] `iterator()` method
     - [ ] Fail-fast iterator (ConcurrentModificationException)
-- [ ] `MyArrayListTest` - comprehensive unit tests
+- [x] `MyArrayListTest` - comprehensive unit tests
 
 #### LinkedList Implementation
-- [ ] `MyLinkedList<E>` class
-    - [ ] Node inner class (with `data`, `next`, `prev`)
-    - [ ] Head and tail references
+- [x] `MyLinkedList<E>` class
+    - [x] Node inner class (with `data`, `next`, `prev`)
+    - [x] Head and tail references
     - [ ] `add(E element)` - add to end
-    - [ ] `add(int index, E element)`
+    - [x] `add(int index, E element)`
     - [ ] `addFirst(E element)`, `addLast(E element)`
-    - [ ] `get(int index)`
-    - [ ] `set(int index, E element)`
-    - [ ] `remove(int index)`
+    - [x] `get(int index)`
+    - [x] `set(int index, E element)`
+    - [x] `remove(int index)`
     - [ ] `removeFirst()`, `removeLast()`
     - [ ] `size()`, `isEmpty()`, `clear()`
     - [ ] Inner class: `LinkedListIterator`
-    - [ ] `iterator()` method
+    - [x] `iterator()` method
     - [ ] Fail-fast iterator
-- [ ] `MyLinkedListTest` - comprehensive unit tests
+- [x] `MyLinkedListTest` - comprehensive unit tests
 
 #### Stack Implementation
 - [ ] `MyStack<E>` class
