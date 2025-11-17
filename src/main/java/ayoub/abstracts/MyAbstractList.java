@@ -1,5 +1,6 @@
 package ayoub.abstracts;
 
+import ayoub.collections.MyCollection;
 import ayoub.collections.MyList;
 import ayoub.list.MyArrayList;
 
@@ -9,6 +10,8 @@ public abstract class MyAbstractList<E> extends MyAbstractCollection<E> implemen
     public abstract E get(int index); // it's abst cuz it needs storage info
     public abstract E set(int index, E elm); // why E? cuz it's return the previous elm that was in the same position
     public abstract void add(int index, E elm);
+
+
     public abstract E remove(int index);
 
     // concrete imp ===============================================================================================================
@@ -28,6 +31,9 @@ public abstract class MyAbstractList<E> extends MyAbstractCollection<E> implemen
         }
         return -1;
     }
+
+    public abstract boolean addAll(int index, MyCollection<? extends E> c);
+
 
     public void trimToSize(){
         // default: nothing

@@ -1,10 +1,14 @@
 package ayoub.abstracts;
 
 import ayoub.collections.MyCollection;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Iterator;
 
 public abstract class MyAbstractCollection<E> implements MyCollection<E> {
+
+    private static final Logger log = LoggerFactory.getLogger(MyAbstractCollection.class);
 
     // this 2 methods are abst cuz they'll be different in imp for each collection: list, linkedlist ...
     public abstract Iterator<E> iterator();
@@ -69,7 +73,7 @@ public abstract class MyAbstractCollection<E> implements MyCollection<E> {
 
     // just to see how it's looks like
     public void looks() {
-        System.out.print("[ ");
+        log.info("[ ");
         for (E e : this) System.out.print(e + " ");
         System.out.println("]");
     }

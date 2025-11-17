@@ -1,6 +1,7 @@
 package ayoub.list;
 
 import ayoub.abstracts.MyAbstractList;
+import ayoub.collections.MyCollection;
 
 import java.util.Iterator;
 
@@ -44,6 +45,7 @@ public class MyLinkedList<E> extends MyAbstractList<E> {
         return old;
     }
 
+    // Inserts the specified element at the specified position in this list. taken from java 17 doc
     @Override
     public void add(int index, E elm) {
         Node<E> current = nodeAt(index);
@@ -53,6 +55,45 @@ public class MyLinkedList<E> extends MyAbstractList<E> {
         prev.setNext(newNode);
         current.setPrev(newNode);
         size ++;
+    }
+
+    @Override
+    public boolean add(E elm){
+        if (elm == null) {
+            System.out.println("we canot add null ?"); // replace it with logs
+            return false;
+        }
+        int index = size;
+        add(index, elm);
+        return true;
+    }
+
+    @Override
+    public boolean addAll(int index, MyCollection<? extends E> c){
+        if (index == 0){
+            Node<E> shifted = nodeAt(0);
+            //Node<E> start = shifted.getPrev(); no prev
+            Iterator<E> it = (Iterator<E>)c.iterator();
+            for (int i =0; i < c.size(); i++){
+                Node<E> node = new Node<E>(null, it.next(),null);
+                node.setNext(node.next);
+                node.setPrev(node.prev);
+            }
+
+            return true;
+        }
+        Node<E> shifted = nodeAt(index);
+        Node<E> start = shifted.getPrev();
+        Iterator<E> it = (Iterator<E>)c.iterator();
+        for (int i =0; i < c.size(); i++){
+            Node<E> node = new Node<E>(null, it.next(),null);
+            start.setNext(node);
+            node.setPrev(start);
+            start = start.next;
+        }
+        shifted.setPrev(start)
+        start.setNext(shifted);
+        return true;
     }
 
     @Override
