@@ -2,6 +2,7 @@ package ayoub.list;
 
 
 import ayoub.abstracts.MyAbstractList;
+import ayoub.collections.MyCollection;
 
 import java.util.Iterator;
 
@@ -53,6 +54,11 @@ public class MyArrayList<E> extends MyAbstractList<E> {
         }
     }
 
+    //let's do it manually first to understand the algo and then we can use System.arraycopy of performence
+    public void shift(int index){
+
+    }
+
     @Override
     public E get(int index) {
         // before we return it -> we should verify if the index not out of the array
@@ -71,8 +77,16 @@ public class MyArrayList<E> extends MyAbstractList<E> {
 
     @Override
     public void add(int index, E elm) {
-        if (index < 0 || index >= size()) throw new IndexOutOfBoundsException();
+        if (index < 0 || index > size()) throw new IndexOutOfBoundsException();
         ensureCapacity(size+1); // the minimum capacity accepted to add one elm is size+1
+        E [] newArr = (E[]) new Object[size+1];
+        for (int i = size - 1; i >= index; i-- ){
+            newArr[i+1] = arr[i];
+        }
+        for (int i = 0; i < index; i++){
+            newArr[i] = arr[i];
+        }
+        arr = newArr;
         arr[index] = elm;
         size++;
     }
@@ -106,6 +120,12 @@ public class MyArrayList<E> extends MyAbstractList<E> {
             if (arr[i] == null ? o == null : arr[i].equals(o)) return i;
         }
         return -1;
+    }
+
+    // todo
+    @Override
+    public boolean addAll(int index, MyCollection<? extends E> c) {
+        return false;
     }
 
     // return last index of the last occurrence of a specific elm

@@ -15,7 +15,7 @@ public class MyArrayListTest {
     void setup() {
         list = new MyArrayList<>();
         list.add("Ayoub");
-        list.add("Basma");
+        list.add("java");
         list.add("Dev ❤️");
     }
 
@@ -43,14 +43,14 @@ public class MyArrayListTest {
     @Test
     void testSetElement() {
         String old = list.set(1, "Updated");
-        assertEquals("Basma", old);
+        assertEquals("java", old);
         assertEquals("Updated", list.get(1));
     }
 
     @Test
     void testRemoveByIndex() {
         String removed = list.remove(1);
-        assertEquals("Basma", removed);
+        assertEquals("java", removed);
         assertEquals(2, list.size());
         assertEquals("Dev ❤️", list.get(1));
     }
@@ -77,14 +77,14 @@ public class MyArrayListTest {
         for (String s : list) {
             sb.append(s).append(" ");
         }
-        assertEquals("Ayoub Basma Dev ❤️ ", sb.toString());
+        assertEquals("Ayoub java Dev ❤️ ", sb.toString());
     }
 
     @Test
     void testRemoveObject() {
-        list.remove("Basma");
+        list.remove("java");
         assertEquals(2, list.size());
-        assertFalse(list.contains("Basma"));
+        assertFalse(list.contains("java"));
     }
 
     @Test

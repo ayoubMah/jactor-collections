@@ -37,10 +37,11 @@ public class Main {
         list.add("A");
         list.add("B");
         list.add("C");
-        list.remove(1);
         list.add("D");
+        list.add(1,"ayoub");
 
         System.out.println("List size: " + list.size());
-        list.looks(); // [A, C, D]
+        System.out.println(list);
+        //list.toString(); // [A, C, D]
     }
 }

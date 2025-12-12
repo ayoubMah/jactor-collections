@@ -39,7 +39,7 @@ public abstract class MyAbstractCollection<E> implements MyCollection<E> {
         for (int i = 0; i < len; i++){
             arr[i] = it.next();
         }
-        System.out.println("the collection converted successfully!");// TODO: later replace it with logs
+        log.debug("the collection converted successfully!");
         return arr;
     }
 
@@ -78,4 +78,17 @@ public abstract class MyAbstractCollection<E> implements MyCollection<E> {
         sb.append("]");
         log.info(sb.toString());
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("[");
+        Iterator<E> it = iterator();
+        while (it.hasNext()) {
+            sb.append(it.next());
+            if (it.hasNext()) sb.append(", ");
+        }
+        sb.append("]");
+        return sb.toString();
+    }
+
 }
