@@ -71,15 +71,20 @@ public class MyLinkedList<E> extends MyAbstractList<E> {
     @Override
     public boolean addAll(int index, MyCollection<? extends E> c){
         if (index == 0){
-            Node<E> shifted = nodeAt(0);
-            //Node<E> start = shifted.getPrev(); no prev
+            Node<E> newHead = nodeAt(index);
+            newHead.prev = null;
+            Node<E> last = null;
             Iterator<E> it = (Iterator<E>)c.iterator();
             for (int i =0; i < c.size(); i++){
                 Node<E> node = new Node<E>(null, it.next(),null);
                 node.setNext(node.next);
                 node.setPrev(node.prev);
+                last = node;
             }
-
+            Node<E> shifted =  head.getPrev();
+            last.setNext(shifted);
+            shifted.setPrev(last);
+            head = newHead;
             return true;
         }
         Node<E> shifted = nodeAt(index);
@@ -91,7 +96,7 @@ public class MyLinkedList<E> extends MyAbstractList<E> {
             node.setPrev(start);
             start = start.next;
         }
-        shifted.setPrev(start)
+        shifted.setPrev(start);
         start.setNext(shifted);
         return true;
     }
