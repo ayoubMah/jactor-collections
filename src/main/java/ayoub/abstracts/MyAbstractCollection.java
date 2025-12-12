@@ -54,7 +54,7 @@ public abstract class MyAbstractCollection<E> implements MyCollection<E> {
             E elm = it.next();
             if (elm == null ? o == null : elm.equals(o)) {
                 it.remove(); // the remove func provided by Iterator interface
-                System.out.println("the elm removed successfully!"); // logs better
+                log.debug("Removed element: {}", o); // logs better
                 return true;
             }
         }
@@ -68,14 +68,14 @@ public abstract class MyAbstractCollection<E> implements MyCollection<E> {
             it.next();
             it.remove();
         }
-        System.out.println("the collection cleaned successfully!"); // TODO: later replace it with logs
+        log.debug("Collection cleaned successfully");
     }
 
     // just to see how it's looks like
     public void looks() {
-        log.info("[ ");
-        for (E e : this) System.out.print(e + " ");
-        System.out.println("]");
+        StringBuilder sb = new StringBuilder("[ ");
+        for (E e : this) sb.append(e).append(" ");
+        sb.append("]");
+        log.info(sb.toString());
     }
-
 }
