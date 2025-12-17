@@ -42,6 +42,8 @@ public class Main {
 
         System.out.println("List size: " + list.size());
         System.out.println(list);
-        //list.toString(); // [A, C, D]
+        System.out.println("let's remove B");
+        list.remove(2);
+        System.out.println(list);
     }
 }

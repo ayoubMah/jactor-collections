@@ -36,12 +36,10 @@ public class MyArrayList<E> extends MyAbstractList<E> {
     // this is the magic behind dynamic list
     // it's just creating a new array with a length bigger then the first one by 50%
     // and then copy/paste the odl elms of the prev array to the new one
+    // we use arraycopy for better performance
     private void grow(int newCapacity){
         E [] newArr = (E[]) new Object[newCapacity];
-        //arr = Arrays.copyOf(arr, newCap);
-        for (int i = 0; i < size; i++){
-            newArr[i] = arr[i];
-        }
+        System.arraycopy(arr,0,newArr,0,size);
         arr = newArr; // replace the old arr with the new one
     }
 
@@ -52,11 +50,6 @@ public class MyArrayList<E> extends MyAbstractList<E> {
             if (newCap < minCapacity) newCap = minCapacity;
             grow(newCap);
         }
-    }
-
-    //let's do it manually first to understand the algo and then we can use System.arraycopy of performence
-    public void shift(int index){
-
     }
 
     @Override
@@ -79,14 +72,7 @@ public class MyArrayList<E> extends MyAbstractList<E> {
     public void add(int index, E elm) {
         if (index < 0 || index > size()) throw new IndexOutOfBoundsException();
         ensureCapacity(size+1); // the minimum capacity accepted to add one elm is size+1
-        E [] newArr = (E[]) new Object[size+1];
-        for (int i = size - 1; i >= index; i-- ){
-            newArr[i+1] = arr[i];
-        }
-        for (int i = 0; i < index; i++){
-            newArr[i] = arr[i];
-        }
-        arr = newArr;
+        System.arraycopy(arr,index,arr,index+1,size-index);
         arr[index] = elm;
         size++;
     }
@@ -104,12 +90,7 @@ public class MyArrayList<E> extends MyAbstractList<E> {
     public E remove(int index) {
         rangeCheck(index);
         E removed = arr[index];
-
-        for (int i = index; i < size - 1; i++){
-            arr[i] = arr[i+1];
-        }
-        // or we can do it with arraycopy => check the doc
-        //System.arraycopy(arr, index+1, arr, index, size - index - 1);
+        System.arraycopy(arr,index+1,arr,index,size-index-1);
         arr[--size] = null; // or arr[size -1] = null; size --;
         return removed;
     }
@@ -164,9 +145,10 @@ public class MyArrayList<E> extends MyAbstractList<E> {
     public void trimToSize(){
         if(arr.length != size){
             E [] newArr = (E[]) new Object [size];
-            for(int i = 0; i < size ; i++){
-                newArr[i] = arr[i];
-            }
+            System.arraycopy(arr,0,newArr,0,size);
+//            for(int i = 0; i < size ; i++){
+//                newArr[i] = arr[i];
+//            }
             arr = newArr;
         }
     }
