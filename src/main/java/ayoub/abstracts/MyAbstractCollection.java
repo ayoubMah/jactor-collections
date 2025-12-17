@@ -1,14 +1,12 @@
 package ayoub.abstracts;
 
 import ayoub.collections.MyCollection;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 import java.util.Iterator;
 
 public abstract class MyAbstractCollection<E> implements MyCollection<E> {
 
-    private static final Logger log = LoggerFactory.getLogger(MyAbstractCollection.class);
 
     // this 2 methods are abst cuz they'll be different in imp for each collection: list, linkedlist ...
     public abstract Iterator<E> iterator();
@@ -39,7 +37,6 @@ public abstract class MyAbstractCollection<E> implements MyCollection<E> {
         for (int i = 0; i < len; i++){
             arr[i] = it.next();
         }
-        log.debug("the collection converted successfully!");
         return arr;
     }
 
@@ -54,7 +51,6 @@ public abstract class MyAbstractCollection<E> implements MyCollection<E> {
             E elm = it.next();
             if (elm == null ? o == null : elm.equals(o)) {
                 it.remove(); // the remove func provided by Iterator interface
-                log.debug("Removed element: {}", o); // logs better
                 return true;
             }
         }
@@ -68,16 +64,8 @@ public abstract class MyAbstractCollection<E> implements MyCollection<E> {
             it.next();
             it.remove();
         }
-        log.debug("Collection cleaned successfully");
     }
 
-    // just to see how it's looks like
-    public void looks() {
-        StringBuilder sb = new StringBuilder("[ ");
-        for (E e : this) sb.append(e).append(" ");
-        sb.append("]");
-        log.info(sb.toString());
-    }
 
     @Override
     public String toString() {
