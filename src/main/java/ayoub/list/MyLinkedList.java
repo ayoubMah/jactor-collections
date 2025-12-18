@@ -51,7 +51,7 @@ public class MyLinkedList<E> extends MyAbstractList<E> {
         return old;
     }
 
-    // Inserts the specified element at the specified position in this list. taken from java 17 doc
+
     @Override
     public void add(int index, E elm) {
         if (index == size){
@@ -85,34 +85,19 @@ public class MyLinkedList<E> extends MyAbstractList<E> {
 
     @Override
     public boolean addAll(int index, MyCollection<? extends E> c){
-        if (index == 0){
-            Node<E> newHead = nodeAt(index);
-            newHead.prev = null;
-            Node<E> last = null;
-            Iterator<E> it = (Iterator<E>)c.iterator();
-            for (int i =0; i < c.size(); i++){
-                Node<E> node = new Node<E>(null, it.next(),null);
-                node.setNext(node.next);
-                node.setPrev(node.prev);
-                last = node;
-            }
-            Node<E> shifted =  head.getPrev();
-            last.setNext(shifted);
-            shifted.setPrev(last);
-            head = newHead;
-            return true;
-        }
-        Node<E> shifted = nodeAt(index);
-        Node<E> start = shifted.getPrev();
+        int inc = c.size();
+        Node<E> successor = (index == size) ? tail : nodeAt(index); // to handle the edge case to avoid IndexOutOfBoundsException by nodeAt
+        Node<E> predecessor = successor.getPrev();
         Iterator<E> it = (Iterator<E>)c.iterator();
         for (int i =0; i < c.size(); i++){
             Node<E> node = new Node<E>(null, it.next(),null);
-            start.setNext(node);
-            node.setPrev(start);
-            start = start.next;
+            predecessor.setNext(node);
+            node.setPrev(predecessor);
+            predecessor = node;
         }
-        shifted.setPrev(start);
-        start.setNext(shifted);
+        successor.setPrev(predecessor);
+        predecessor.setNext(successor);
+        size+=inc;
         return true;
     }
 
