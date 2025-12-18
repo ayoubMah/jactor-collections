@@ -54,11 +54,15 @@ public class MyLinkedList<E> extends MyAbstractList<E> {
     // Inserts the specified element at the specified position in this list. taken from java 17 doc
     @Override
     public void add(int index, E elm) {
+        if (index == size){
+            add(elm);
+            return;
+        }
         Node<E> current = nodeAt(index);
-        Node<E> prev = current.getPrev();
-        Node<E> newNode = new Node<>(prev, elm, current);
+        Node<E> currentPrev = current.getPrev();
+        Node<E> newNode = new Node<>(currentPrev, elm, current);
 
-        prev.setNext(newNode);
+        currentPrev.setNext(newNode);
         current.setPrev(newNode);
         size ++;
     }
