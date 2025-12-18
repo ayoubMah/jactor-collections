@@ -21,12 +21,18 @@ public class MyLinkedList<E> extends MyAbstractList<E> {
 
     // helper
     private Node<E> nodeAt(int index) {
-        // TODO: for now no need to make optimization zie/2  we start always from head
         if (index < 0 || index > size) throw new IndexOutOfBoundsException();
 
-        Node<E> current = head.getNext(); // At position 0
-        for (int i = 0; i < index ; i++) {
-            current = current.getNext();
+        if (((int)size / 2) > index ){
+            Node<E> current = head.getNext();
+            for (int i = 0; i < index ; i++) {
+                current = current.getNext();
+            }
+            return current;
+        }
+        Node<E> current = tail.getPrev();
+        for (int i = size-1 ; i > index; i-- ){
+            current = current.getPrev();
         }
         return current;
     }
@@ -60,11 +66,16 @@ public class MyLinkedList<E> extends MyAbstractList<E> {
     @Override
     public boolean add(E elm){
         if (elm == null) {
-            System.out.println("we canot add null ?"); // replace it with logs
+            System.out.println("we can't add null ?");
             return false;
         }
-        int index = size;
-        add(index, elm);
+        Node<E> currentLastElm = tail.getPrev();
+        Node<E> newLastElm = new Node<>(currentLastElm, elm, tail);
+
+        tail.setPrev(newLastElm);
+        currentLastElm.setNext(newLastElm);
+        size++;
+
         return true;
     }
 

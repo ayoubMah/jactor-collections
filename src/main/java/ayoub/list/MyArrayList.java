@@ -146,9 +146,6 @@ public class MyArrayList<E> extends MyAbstractList<E> {
         if(arr.length != size){
             E [] newArr = (E[]) new Object [size];
             System.arraycopy(arr,0,newArr,0,size);
-//            for(int i = 0; i < size ; i++){
-//                newArr[i] = arr[i];
-//            }
             arr = newArr;
         }
     }
