@@ -116,6 +116,31 @@ public class MyLinkedList<E> extends MyAbstractList<E> {
         return target.getData();
     }
 
+
+    public E removeFirst(){
+        if (isEmpty()) return null;
+        Node<E> target = head.getNext();
+        Node<E> newFirst = target.next;
+        target.setPrev(null);
+        target.setNext(null);
+        head.setNext(newFirst);
+        newFirst.setPrev(head);
+        size --;
+        return target.getData();
+    }
+
+    public E removeLast(){
+        if (isEmpty()) return null;
+        Node<E> target = tail.getPrev();
+        Node<E> newLast = target.next;
+        target.setPrev(null);
+        target.setNext(null);
+        tail.setPrev(newLast);
+        newLast.setNext(tail);
+        size --;
+        return target.getData();
+    }
+
     // in a linked list if we have a 2 nodes of more that has the same data => we should return the last index of a node has this data
     // so it's smart move to start with the tail until get the first elm and it's the target
     @Override
@@ -160,17 +185,7 @@ public class MyLinkedList<E> extends MyAbstractList<E> {
         addBetween(tail.getPrev(), elm, tail);
     }
 
-    public E removeFirst(){
-        if (isEmpty()) return null;
-        remove(head.getNext().getData()); // this remove is public boolean remove(Object o) from my abstract collection
-        return head.getNext().getData();
-    }
 
-    public E removeLast(){
-        if (isEmpty()) return null;
-        remove(tail.getPrev().getData());
-        return tail.getPrev().getData();
-    }
 
     @Override
     public Iterator<E> iterator() {
