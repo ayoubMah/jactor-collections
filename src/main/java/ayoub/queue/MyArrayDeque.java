@@ -1,4 +1,7 @@
 package ayoub.queue;
 
-public class MyArrayDeque {
+
+public class MyArrayDeque<E> {
+
+
 }
