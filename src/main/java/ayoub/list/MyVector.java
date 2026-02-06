@@ -4,6 +4,7 @@ import ayoub.abstracts.MyAbstractList;
 import ayoub.collections.MyCollection;
 
 import java.util.Iterator;
+import java.util.Objects;
 
 public class MyVector<E> extends MyAbstractList<E> {
 
@@ -60,22 +61,51 @@ public class MyVector<E> extends MyAbstractList<E> {
 
     @Override
     public E remove(int index) {
-        return null;
+        rangeCheck(index);
+        E elm = elmData[index];
+        System.arraycopy(elmData, index + 1, elmData, index, elmCount-index);
+        elmData[--elmCount] = null;
+        return elm;
     }
 
     @Override
     public int lastIndexOf(Object o) {
-        return 0;
+        int lastIndex = elmCount;
+        for (int i = lastIndex; i >= 0; i--){
+            if (Objects.equals(o, elmData[i])) return i;
+        }
+        return -1;
     }
 
     @Override
     public boolean addAll(int index, MyCollection<? extends E> c) {
-        return false;
+        rangeCheck(index);
+        ensureCapacity(c.size());
+        for (E elm : c){
+            add(elm);
+        }
+        return true;
     }
 
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return new Iterator<E>() {
+            int cursor = 0;
+            @Override
+            public boolean hasNext() {
+                return cursor < elmCount;
+            }
+
+            @Override
+            public E next() {
+                return elmData[cursor++];
+            }
+
+            @Override
+            public void remove(){
+                MyVector.this.remove(--cursor);
+            }
+        };
     }
 
     @Override
