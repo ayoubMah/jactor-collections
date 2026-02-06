@@ -9,15 +9,15 @@ public class MyVector<E> extends MyAbstractList<E> {
 
     protected int capacityIncrement = 10; // by default
     protected int elmCount;
-    protected Object[] elmData;
+    protected E[] elmData;
 
     public MyVector(){
-        elmData = new Object[capacityIncrement];
+        elmData = (E[]) new Object[capacityIncrement];
         elmCount = 0;
     }
 
     public MyVector(int intialCapacity){
-        elmData = new Object[intialCapacity];
+        elmData = (E[]) new Object[intialCapacity];
         elmCount = 0;
     }
 
@@ -31,12 +31,16 @@ public class MyVector<E> extends MyAbstractList<E> {
 
     @Override
     public E get(int index) {
-        return null;
+        rangeCheck(index);
+        return elmData[index];
     }
 
     @Override
     public E set(int index, E elm) {
-        return null;
+        rangeCheck(index);
+        E old = elmData[index];
+        elmData[index] = elm;
+        return old;
     }
 
     public boolean add(E elm) {
@@ -47,7 +51,11 @@ public class MyVector<E> extends MyAbstractList<E> {
 
     @Override
     public void add(int index, E elm) {
-
+        rangeCheck(index);
+        ensureCapacity(elmCount + 1);
+        System.arraycopy(elmData, index, elmData, index+1, elmCount-index); // length:  the number of array elements to be copied see @javadoc
+        elmData[index] = elm;
+        elmCount++;
     }
 
     @Override
@@ -76,7 +84,7 @@ public class MyVector<E> extends MyAbstractList<E> {
     }
 
     private void grow(int newCapacity) {
-        Object[] newArr = new Object[newCapacity];
+        E[] newArr = (E[]) new Object[newCapacity];
         System.arraycopy(elmData,0, newArr, 0, elmCount);
         elmData = newArr;
     }
@@ -86,6 +94,12 @@ public class MyVector<E> extends MyAbstractList<E> {
             int newCap = 2 * elmCount; // growth 2X
             if (newCap < minCapacity) newCap = minCapacity;
             grow(newCap);
+        }
+    }
+
+    private void rangeCheck(int index) {
+        if (index < 0 || index > elmCount){
+            throw new IndexOutOfBoundsException("index: "+index + ", size: "+elmCount);
         }
     }
 }
