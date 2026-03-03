@@ -52,6 +52,7 @@ Focus: Dynamic resizing, pointer manipulation, and index-based access.
   - [x] Node architecture (prev, data, next).
   - [x] $O(1)$ insertion/deletion at known references.
   - [x] $O(n)$ access time.
+- [x] MyVector<E> 
   - [ ] Deque interface compliance.
 
 ### Phase 2: Queues & Deques
