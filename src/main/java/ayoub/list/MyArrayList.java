@@ -5,6 +5,7 @@ import ayoub.abstracts.MyAbstractList;
 import ayoub.collections.MyCollection;
 
 import java.util.Iterator;
+import java.util.Objects;
 
 public class MyArrayList<E> extends MyAbstractList<E> {
 
@@ -28,6 +29,11 @@ public class MyArrayList<E> extends MyAbstractList<E> {
     }
 
     private void rangeCheck(int index) {
+        if (index < 0 || index > size - 1){
+            throw new IndexOutOfBoundsException("index: "+index + ", size: "+size);
+        }
+    }
+    private void rangeCheckForAdd(int index) {
         if (index < 0 || index > size){
             throw new IndexOutOfBoundsException("index: "+index + ", size: "+size);
         }
@@ -70,7 +76,7 @@ public class MyArrayList<E> extends MyAbstractList<E> {
 
     @Override
     public void add(int index, E elm) {
-        if (index < 0 || index > size()) throw new IndexOutOfBoundsException();
+        rangeCheckForAdd(index);
         ensureCapacity(size+1); // the minimum capacity accepted to add one elm is size+1
         System.arraycopy(arr,index,arr,index+1,size-index);
         arr[index] = elm;
@@ -98,7 +104,7 @@ public class MyArrayList<E> extends MyAbstractList<E> {
     @Override
     public int indexOf(Object o) {
         for (int i = 0; i < size; i++){
-            if (arr[i] == null ? o == null : arr[i].equals(o)) return i;
+            if (Objects.equals(arr[i], o)) return i;
         }
         return -1;
     }
@@ -113,9 +119,9 @@ public class MyArrayList<E> extends MyAbstractList<E> {
     // and -1 if not exist
     @Override
     public int lastIndexOf(Object o) {
-        int lastIndex = size;
+        int lastIndex = size - 1;
         for (int i = lastIndex; i >= 0 ; i--){
-            if (arr[i] == null ? o == null : arr[i].equals(o)) return i;
+            if (Objects.equals(arr[i], o)) return i;
         }
         return -1;
     }
