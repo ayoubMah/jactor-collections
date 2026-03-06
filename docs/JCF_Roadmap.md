@@ -26,6 +26,15 @@ Goal: Build the foundation and list implementations.
 - Added LinkedListIterator
 - Added full unit tests (CRUD + iterator)
 
+### 🚧 v0.0.4 - Refactor & Review (In Progress)
+- Conducted structural design review of `MyArrayList` and `MyCollection`.
+- Identified critical implementation gaps:
+    - Fail-fast iterator support (`modCount` tracking).
+    - Thread-safety documentation requirements.
+    - Overflow protection in dynamic resizing.
+    - Interface Segregation (Read-only vs Mutable interfaces).
+- Documented null-safety improvements and efficiency concerns.
+
 
 ---
 

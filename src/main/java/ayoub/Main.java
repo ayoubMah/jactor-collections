@@ -32,18 +32,5 @@ public class Main {
                 " ╚═╝     ╚═╝   ╚═╝        ╚═════╝ ╚═════╝ ╚══════╝╚══════╝╚══════╝ ╚═════╝   ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝" + RESET);
         System.out.println("  " + createBorder(110, BORDER));
         // ========================================================================================
-
-        MyArrayList<String> list = new MyArrayList<>();
-        list.add("A");
-        list.add("B");
-        list.add("C");
-        list.add("D");
-        list.add(1,"ayoub");
-
-        System.out.println("List size: " + list.size());
-        System.out.println(list);
-        System.out.println("let's remove B");
-        list.remove(2);
-        System.out.println(list);
     }
 }
